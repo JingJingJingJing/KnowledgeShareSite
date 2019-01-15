@@ -1,8 +1,5 @@
 #!/bin/bash
 
-IP="$IP"
-DEPLOY_DIR=$DEPLOY_DIR
-
 chmod 600 deploy.rsa
 eval $(ssh-agent)
 ssh-add deploy.rsa
@@ -16,7 +13,6 @@ EOF
 scp -oStrictHostKeyChecking=no app/docker-compose-total.yml root@$IP:$DEPLOY_DIR/docker-compose-total.yml
 
 ssh -oStrictHostKeyChecking=no root@$IP <<EOF
-    scp app/docker-compose-total.yml $IP:$DEPLOY_DIR/docker-compose-total.yml 
     cd $DEPLOY_DIR
     if [ "$(docker ps -a -q)" ]; then
         docker stop $(docker ps -a -q)
