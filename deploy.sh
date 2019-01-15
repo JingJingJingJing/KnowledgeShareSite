@@ -1,7 +1,7 @@
 #!/bin/bash
 
-IP = 128.199.81.210
-DEPLOY_DIR = /ks
+IP="128.199.81.210"
+DEPLOY_DIR="/ks"
 
 scp app/docker-compose-total.yml username@a:$DEPLOY_DIR/docker-compose-total.yml 
 
