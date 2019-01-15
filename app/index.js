@@ -9,7 +9,6 @@ const app = express();
 
 app.get('/', (req, res) => {
     mongoClient.connect(dbConfig.protocol + dbConfig.host + ":" + dbConfig.port, function (err, client) {
-        console.log(dbConfig.protocol + dbConfig.host + ":" + dbConfig.port);
         const col = client.db(dbConfig.db).collection('helloworld');
         col.insertOne({"sateam":"helloworld!"});
         col.find({}).toArray(function (err, items) {

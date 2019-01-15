@@ -1,4 +1,3 @@
-language: python
 services:
   - docker
 
@@ -23,7 +22,4 @@ after_success:
 
 # deploy:
 
-after_deploy:
-  - docker stop $(docker ps -a -q)
-  - docker rm $(docker ps -a -q)
-  - docker-compose -f docker-compose-total.yml -p mongodb up -d && bash setup.sh
+# after_deploy:
