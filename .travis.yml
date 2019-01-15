@@ -9,7 +9,10 @@ before_install:
   - echo $docker_hub_gemma_pw | docker login -u $docker_hub_gemma --password-stdin
   - docker build -t gemmawu/sasharingapp:1.0 ./app
   - docker tag gemmawu/sasharingapp:1.0 gemmawu/sasharingapp:1.0
-  - docker push gemmawu/sasharingapp:1.0
+  - docker push gemmawu/sasharingapp:1.0 | grep 'Layer already exist' &> /dev/null
+  - if [ $? == 0 ]; then 
+  - echo "No layer have been updated."
+  - fi
 
 # install:
 
