@@ -6,7 +6,7 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_64cbeea805df_key -iv $encrypted_64cbeea805df_iv
     -in deploy.rsa.enc -out deploy.rsa -d
   - echo $docker_hub_gemma_pw | docker login -u $docker_hub_gemma --password-stdin
-  - docker build -t gemmawu/sasharingapp:1.0 .
+  - docker build -t gemmawu/sasharingapp:1.0 ./app
 
 # install:
 
