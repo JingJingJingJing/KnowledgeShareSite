@@ -18,9 +18,6 @@ before_install:
 # script:
 
 after_success:
-  - chmod 600 deploy.rsa
-  - eval $(ssh-agent)
-  - ssh-add deploy.rsa
   - "./deploy.sh"
 
 # deploy:

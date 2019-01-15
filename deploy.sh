@@ -3,6 +3,10 @@
 IP="$IP"
 DEPLOY_DIR=$DEPLOY_DIR
 
+chmod 600 deploy.rsa
+eval $(ssh-agent)
+ssh-add deploy.rsa
+
 ssh -oStrictHostKeyChecking=no root@$IP <<EOF
     if [ ! -d $DEPLOY_DIR ]; then
         mkdir $DEPLOY_DIR
