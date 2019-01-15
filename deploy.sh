@@ -1,11 +1,18 @@
 #!/bin/bash
 
-IP="128.199.81.210"
-DEPLOY_DIR="/ks"
+IP="$IP"
+DEPLOY_DIR=$DEPLOY_DIR
 
-scp app/docker-compose-total.yml username@a:$DEPLOY_DIR/docker-compose-total.yml 
+ssh -oStrictHostKeyChecking=no root@$IP <<EOF
+    if [ ! -d $DEPLOY_DIR ]; then
+        mkdir $DEPLOY_DIR
+    fi
+EOF
 
-ssh -o root@$IP <<EOF
+scp -oStrictHostKeyChecking=no app/docker-compose-total.yml root@$IP:$DEPLOY_DIR/docker-compose-total.yml
+
+ssh -oStrictHostKeyChecking=no root@$IP <<EOF
+    scp app/docker-compose-total.yml $IP:$DEPLOY_DIR/docker-compose-total.yml 
     cd $DEPLOY_DIR
     if [ "$(docker ps -a -q)" ]; then
         docker stop $(docker ps -a -q)
