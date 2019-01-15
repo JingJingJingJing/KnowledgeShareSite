@@ -1,0 +1,6 @@
+{
+    "protocol": "mongodb://",
+    "host": "10.176.170.197",
+    "port": "27020",
+    "db": "admin"
+}

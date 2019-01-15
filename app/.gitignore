@@ -1,0 +1,9 @@
+# dependencies
+/node_modules
+
+# # package
+# package.json
+# package-lock.json
+
+#ssh key
+*.rsa
