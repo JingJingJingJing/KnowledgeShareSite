@@ -11,6 +11,7 @@ ssh -oStrictHostKeyChecking=no root@$IP <<EOF
 EOF
 
 scp -oStrictHostKeyChecking=no app/docker-compose-total.yml root@$IP:$DEPLOY_DIR/docker-compose-total.yml
+scp -oStrictHostKeyChecking=no app/setup.sh root@$IP:$DEPLOY_DIR/setup.sh
 
 ssh -oStrictHostKeyChecking=no root@$IP <<EOF
     cd $DEPLOY_DIR
@@ -18,5 +19,5 @@ ssh -oStrictHostKeyChecking=no root@$IP <<EOF
         docker stop $(docker ps -a -q)
         docker rm $(docker ps -a -q)
     fi
-    docker-compose -f app/docker-compose-total.yml -p mongodb up -d && bash ./app/setup.sh
+    docker-compose -f docker-compose-total.yml -p mongodb up -d && bash setup.sh
 EOF
