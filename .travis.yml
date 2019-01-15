@@ -21,7 +21,6 @@ after_success:
   - chmod 600 deploy.rsa
   - eval $(ssh-agent)
   - ssh-add deploy.rsa
-  - chomd +x deploy.sh
   - "./deploy.sh"
 
 # deploy:
