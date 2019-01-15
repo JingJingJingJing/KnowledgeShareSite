@@ -3,11 +3,11 @@ services:
   - docker
 
 before_install:
+  - touch deploy.rsa
   - openssl aes-256-cbc -K $encrypted_64cbeea805df_key -iv $encrypted_64cbeea805df_iv
-    -in deploy.rsa.enc -out ~\/.ssh/deploy.rsa -d
+    -in deploy.rsa.enc -out deploy.rsa -d
   - echo $docker_hub_gemma_pw | docker login -u $docker_hub_gemma --password-stdin
   - docker build -t gemmawu/sasharingapp:1.0 .
-  - touch ~\/.ssh/deploy.rsa
 
 # install:
 
@@ -16,9 +16,9 @@ before_install:
 # script:
 
 after_success:
-  - chmod 600 ~\/.ssh/deploy.rsa
+  - chmod 600 deploy.rsa
   - eval $(ssh-agent)
-  - ssh-add ~\/.ssh/deploy.rsa
+  - ssh-add deploy.rsa
   - "./deploy.sh"
 
 # deploy:
