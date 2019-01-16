@@ -14,6 +14,7 @@ scp -oStrictHostKeyChecking=no -rp app root@128.199.81.210:/ks
 
 ssh -oStrictHostKeyChecking=no root@128.199.81.210 <<EOF
     cd /ks/app
+    chmod +x delpoy.sh
     docker-compose -f docker-compose-total.yml -p mongodb up -d && ./setup.sh
 EOF
     
