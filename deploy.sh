@@ -10,7 +10,7 @@ ssh -oStrictHostKeyChecking=no root@$IP <<EOF
     fi
 EOF
 
-scp -oStrictHostKeyChecking=no app root@$IP:$DEPLOY_DIR
+scp -oStrictHostKeyChecking=no -rp app root@$IP:$DEPLOY_DIR
 
 ssh -oStrictHostKeyChecking=no root@$IP <<EOF
     cd $DEPLOY_DIR
