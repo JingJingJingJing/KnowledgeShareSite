@@ -13,7 +13,7 @@ EOF
 scp -oStrictHostKeyChecking=no -rp app root@$IP:$DEPLOY_DIR
 
 ssh -oStrictHostKeyChecking=no root@$IP <<EOF
-    cd $DEPLOY_DIR
+    cd $DEPLOY_DIR/app
     if [ "$(docker ps -a -q)" ]; then
         docker stop $(docker ps -a -q)
         docker rm $(docker ps -a -q)
