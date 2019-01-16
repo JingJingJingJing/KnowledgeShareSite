@@ -10,8 +10,7 @@ ssh -oStrictHostKeyChecking=no root@$IP <<EOF
     fi
 EOF
 
-scp -oStrictHostKeyChecking=no app/docker-compose-total.yml root@$IP:$DEPLOY_DIR/docker-compose-total.yml
-scp -oStrictHostKeyChecking=no app/setup.sh root@$IP:$DEPLOY_DIR/setup.sh
+scp -oStrictHostKeyChecking=no app root@$IP:$DEPLOY_DIR
 
 ssh -oStrictHostKeyChecking=no root@$IP <<EOF
     cd $DEPLOY_DIR
