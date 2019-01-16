@@ -1,6 +1,6 @@
 {
     "protocol": "mongodb://",
-    "host": "10.176.170.197",
-    "port": "27020",
+    "host": "app_data1",
+    "port": "27017",
     "db": "admin"
 }
