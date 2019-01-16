@@ -1,5 +1,3 @@
-#!/usr/bin/env mongo WordPress
-
 rs.initiate(
     {
         _id: "rs",
