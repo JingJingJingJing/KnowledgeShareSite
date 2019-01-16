@@ -40,8 +40,8 @@ services:
     ports:
       - 27020:27017
     command: mongod --replSet rs
-    # volumes: 
-    #   - .:/src/app/
+    volumes: 
+      - .:/src/app/
     depends_on:
       - app_data2
       - app_data3
