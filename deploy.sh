@@ -12,7 +12,7 @@ EOF
 
 scp -oStrictHostKeyChecking=no -rp app root@128.199.81.210:/ks
 
-ssh -oStrictHostKeyChecking=no root@128.199.81.210 <<EOF
+ssh -oStrictHostKeyChecking=no root@128.199.81.210
     cd /ks/app
     if [ "$(docker ps -a -q)" ]; then
         echo "exist running containers"
@@ -20,4 +20,4 @@ ssh -oStrictHostKeyChecking=no root@128.199.81.210 <<EOF
         docker rm $(docker ps -a -q)
     fi
     docker-compose -f docker-compose-total.yml -p mongodb up -d && bash setup.sh
-EOF
+    
