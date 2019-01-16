@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# chmod 600 deploy.rsa
-# eval $(ssh-agent)
-# ssh-add deploy.rsa
+chmod 600 deploy.rsa
+eval $(ssh-agent)
+ssh-add deploy.rsa
 
 ssh -oStrictHostKeyChecking=no root@128.199.81.210 <<EOF
     if [ ! -d /ks ]; then
