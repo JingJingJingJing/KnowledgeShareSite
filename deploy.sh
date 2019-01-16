@@ -1,22 +1,20 @@
 #!/bin/bash
 
-chmod 600 deploy.rsa
-eval $(ssh-agent)
-ssh-add deploy.rsa
+# chmod 600 deploy.rsa
+# eval $(ssh-agent)
+# ssh-add deploy.rsa
 
-ssh -oStrictHostKeyChecking=no root@$IP <<EOF
-    if [ ! -d $DEPLOY_DIR ]; then
-        mkdir $DEPLOY_DIR
+ssh -oStrictHostKeyChecking=no root@128.199.81.210 <<EOF
+    if [ ! -d /ks ]; then
+        mkdir /ks
     fi
 EOF
 
-scp -oStrictHostKeyChecking=no -rp app root@$IP:$DEPLOY_DIR
+scp -oStrictHostKeyChecking=no -rp app root@128.199.81.210:/ks
 
-ssh -oStrictHostKeyChecking=no root@$IP <<EOF
-    cd $DEPLOY_DIR/app
-    if [ "$(docker ps -a -q)" ]; then
-        docker stop $(docker ps -a -q)
-        docker rm $(docker ps -a -q)
-    fi
+ssh -oStrictHostKeyChecking=no root@128.199.81.210 <<EOF
+    cd /ks/app
+    docker stop $(docker ps -a -q) &> /dev/null
+    docker rm $(docker ps -a -q) &> /dev/null
     docker-compose -f docker-compose-total.yml -p mongodb up -d && bash setup.sh
 EOF
