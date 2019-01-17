@@ -9,6 +9,7 @@ const app = express();
 
 app.get('/', (req, res) => {
     mongoClient.connect(dbConfig.protocol + dbConfig.hosts + '/?' + "replicaSet:" + dbConfig.replicaSet,{ useNewUrlParser: true }, function (err, client) {
+        console.log(dbConfig.protocol + dbConfig.hosts + '/?' + "replicaSet:" + dbConfig.replicaSet);
         const col = client.db(dbConfig.db).collection('helloworld');
         col.insertOne({"sateam":"helloworld!"});
         col.find({}).toArray(function (err, items) {
