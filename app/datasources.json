@@ -1,6 +1,6 @@
 {
     "protocol": "mongodb://",
-    "host": "app_data1",
-    "port": "27017",
-    "db": "admin"
+    "hosts": "app_data1:27017,app_data2:27017,app_data3:27017",
+    "db": "admin",
+    "replicaSet": "rs"
 }

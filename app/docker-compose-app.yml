@@ -12,5 +12,7 @@ services:
           memory: 50M
       restart_policy:
         condition: on-failure
+    hostname: share-app
+    container_name: share-app
     ports:
       - 3000:3000

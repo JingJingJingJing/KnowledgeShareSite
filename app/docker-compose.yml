@@ -11,6 +11,8 @@ services:
           memory: 50M
       restart_policy:
         condition: on-failure
+    hostname: app_data1
+    container_name: app_data1
     ports:
       - 27020:27017
     command: mongod --replSet rs
@@ -32,6 +34,8 @@ services:
           memory: 50M
       restart_policy:
         condition: on-failure
+    hostname: app_data2
+    container_name: app_data2
     ports:
       - 27018:27017
     command: mongod --replSet rs
@@ -47,7 +51,9 @@ services:
           cpus: "0.1"
           memory: 50M
       restart_policy:
-        condition: on-failure 
+        condition: on-failure
+    hostname: app_data3
+    container_name: app_data3
     ports:
       - 27019:27017
     command: mongod --replSet rs

@@ -8,7 +8,7 @@ const appConfig = require('./app.json');
 const app = express();
 
 app.get('/', (req, res) => {
-    mongoClient.connect(dbConfig.protocol + dbConfig.host + ":" + dbConfig.port, function (err, client) {
+    mongoClient.connect(dbConfig.protocol + dbConfig.hosts + '/?' + "replicaSet:" + dbConfig.replicaSet,{ useNewUrlParser: true }, function (err, client) {
         const col = client.db(dbConfig.db).collection('helloworld');
         col.insertOne({"sateam":"helloworld!"});
         col.find({}).toArray(function (err, items) {
